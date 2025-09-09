@@ -24,9 +24,14 @@ namespace Villa_resort.Controllers
         [HttpPost]
         public IActionResult CreateVilla(VillaModel obj)
         {
-            _db.Villas.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if(ModelState.IsValid )
+            {
+                _db.Villas.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+             return View();
+           
         }
     }
 }
