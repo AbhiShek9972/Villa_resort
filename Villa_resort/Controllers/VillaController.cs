@@ -21,9 +21,12 @@ namespace Villa_resort.Controllers
             return View();
         }
 
-        //public IActionResult CreateVilla(VillaModel obj)
-        //{
-
-        //}
+        [HttpPost]
+        public IActionResult CreateVilla(VillaModel obj)
+        {
+            _db.Villas.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
