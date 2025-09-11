@@ -24,7 +24,12 @@ namespace Villa_resort.Controllers
         [HttpPost]
         public IActionResult CreateVilla(VillaModel obj)
         {
-            if(ModelState.IsValid )
+            if(obj.Name == obj.Description)
+            {
+                ModelState.AddModelError("name", "The Name and Description cannot be the same.");
+            }
+
+            if (ModelState.IsValid )
             {
                 _db.Villas.Add(obj);
                 _db.SaveChanges();
