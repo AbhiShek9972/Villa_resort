@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Villa_resort.Infrastructure.Data;
 using Villa_resort.Domain.Entities;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Villa_resort.Controllers
 {
@@ -37,6 +38,16 @@ namespace Villa_resort.Controllers
             }
              return View();
            
+        }
+
+        public IActionResult Update(int VillaId)
+        {
+            VillaModel? obj = _db.Villas.FirstOrDefault(u=> u.Id == VillaId);
+            if (obj==null)
+            {
+                return NotFound();
+            }
+            return View(obj);
         }
     }
 }
