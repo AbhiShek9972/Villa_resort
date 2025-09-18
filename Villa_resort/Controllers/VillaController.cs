@@ -43,6 +43,8 @@ namespace Villa_resort.Controllers
         public IActionResult Update(int VillaId)
         {
             VillaModel? obj = _db.Villas.FirstOrDefault(u=> u.Id == VillaId);
+           // var villa = _db.Villas.Find(VillaId);
+            //var villaList = _db.Villas.Where(u => u.Price > 50 && u.Occupancy > 0).FirstOrDefault();
             if (obj==null)
             {
                 return NotFound();
