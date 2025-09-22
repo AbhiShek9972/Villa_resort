@@ -25,31 +25,50 @@ namespace Villa_resort.Controllers
         [HttpPost]
         public IActionResult CreateVilla(VillaModel obj)
         {
-            if(obj.Name == obj.Description)
+            if (obj.Name == obj.Description)
             {
                 ModelState.AddModelError("name", "The Name and Description cannot be the same.");
             }
 
-            if (ModelState.IsValid )
+            if (ModelState.IsValid)
             {
                 _db.Villas.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-             return View();
-           
+            return View();
+
         }
 
         public IActionResult Update(int VillaId)
         {
-            VillaModel? obj = _db.Villas.FirstOrDefault(u=> u.Id == VillaId);
-           // var villa = _db.Villas.Find(VillaId);
+            VillaModel? obj = _db.Villas.FirstOrDefault(u => u.Id == VillaId);
+            // var villa = _db.Villas.Find(VillaId);
             //var villaList = _db.Villas.Where(u => u.Price > 50 && u.Occupancy > 0).FirstOrDefault();
-            if (obj==null)
+            if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction("Error", "Home");
             }
             return View(obj);
         }
+
+        [HttpPost]
+        public IActionResult Update(VillaModel obj)
+        {
+            //if (obj.Name == obj.Description)
+            //{
+            //    ModelState.AddModelError("name", "The Name and Description cannot be the same.");
+            //}
+
+            if (ModelState.IsValid)
+            {
+                _db.Villas.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+
+        }
+
     }
 }
