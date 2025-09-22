@@ -70,5 +70,32 @@ namespace Villa_resort.Controllers
 
         }
 
+        public IActionResult Delete(int VillaId)
+        {
+            VillaModel? obj = _db.Villas.FirstOrDefault(u => u.Id == VillaId);
+            
+            if (obj == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            return View(obj);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(VillaModel obj)
+        {
+            VillaModel? objfrom = _db.Villas.FirstOrDefault(u => u.Id == obj.Id);
+
+            if (objfrom is not null)
+            {
+                _db.Villas.Remove(objfrom);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(objfrom);
+
+        }
+
+
     }
 }
