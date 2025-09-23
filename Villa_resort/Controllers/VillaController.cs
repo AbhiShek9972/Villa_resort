@@ -34,8 +34,10 @@ namespace Villa_resort.Controllers
             {
                 _db.Villas.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Villa created successfully";
                 return RedirectToAction("Index");
             }
+                TempData["error"] = "Error while creating Villa";
             return View();
 
         }
@@ -64,8 +66,10 @@ namespace Villa_resort.Controllers
             {
                 _db.Villas.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Villa updated successfully";
                 return RedirectToAction("Index");
             }
+            TempData["error"] = "Error while updating Villa";
             return View();
 
         }
@@ -90,8 +94,10 @@ namespace Villa_resort.Controllers
             {
                 _db.Villas.Remove(objfrom);
                 _db.SaveChanges();
+                TempData["success"] = "Villa deleted successfully";
                 return RedirectToAction("Index");
             }
+            TempData["error"] = "Error while deleting Villa";
             return View(objfrom);
 
         }
