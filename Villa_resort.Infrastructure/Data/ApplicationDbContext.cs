@@ -17,6 +17,7 @@ namespace Villa_resort.Infrastructure.Data
         }
 
         public DbSet<VillaModel> Villas { get; set; }
+        public DbSet<VillaNumber> VillaNumbers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,6 +49,34 @@ namespace Villa_resort.Infrastructure.Data
                     UpdatedDate = DateTime.Now
                 }
             );
+
+            modelBuilder.Entity<VillaNumber>().HasData(
+                new VillaNumber
+                {
+                    villaNumber = 101,
+                    VillaID = 1,
+                   // SpecialDetails = "Ocean view, King-size bed",
+                },
+                new VillaNumber
+                {
+                    villaNumber = 102,
+                    VillaID = 1,
+                   // SpecialDetails = "Garden view, Two Queen-size beds",
+                },
+                new VillaNumber
+                {
+                    villaNumber = 201,
+                    VillaID = 2,
+                  //  SpecialDetails = "Beach access, King-size bed",
+                },
+                new VillaNumber
+                {
+                    villaNumber = 202,
+                    VillaID = 2,
+                    //SpecialDetails = "Balcony with sea view, Two Queen-size beds",
+                }
+            );
+
         }
     }
 }
