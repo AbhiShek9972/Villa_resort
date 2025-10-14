@@ -25,16 +25,17 @@ namespace Villa_resort.Controllers
         [HttpPost]
         public IActionResult CreateVillaNumber(VillaNumber obj)
         {
-         
-
-            if (ModelState.IsValid)
-            {
-                _db.VillaNumbers.Add(obj);
-                _db.SaveChanges();
-                TempData["success"] = "Villa_Number created successfully";
-                return RedirectToAction("Index");
-            }
-                TempData["error"] = "Error while creating Villa";
+           
+                //ModelState.Remove("VillaModel");
+                if (ModelState.IsValid)
+                {
+                    _db.VillaNumbers.Add(obj);
+                    _db.SaveChanges();
+                    TempData["success"] = "Villa_Number created successfully";
+                    return RedirectToAction("Index");
+                }
+            
+               // TempData["error"] = "Error while creating Villa";
             return View();
 
         }
