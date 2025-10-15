@@ -2,6 +2,7 @@
 using Villa_resort.Infrastructure.Data;
 using Villa_resort.Domain.Entities;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Villa_resort.Controllers
 {
@@ -19,6 +20,12 @@ namespace Villa_resort.Controllers
         }
         public IActionResult CreateVillaNumber()
         {
+            IEnumerable<SelectListItem> list = _db.Villas.ToList().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+            ViewData["VillaList"] = list;
             return View();
         }
 
